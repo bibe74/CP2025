@@ -18,6 +18,14 @@ GO
 USE CP2025;
 GO
 
+/**
+
+Scaricare il file AdventureWorks2022.bak da https://learn.microsoft.com/it-it/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms
+
+Effettuare il restore del file nel server locale
+
+*/
+
 IF NOT EXISTS (SELECT name FROM sys.schemas WHERE name = 'AW2022') EXEC ('CREATE SCHEMA AW2022 AUTHORIZATION dbo;');
 GO
 
