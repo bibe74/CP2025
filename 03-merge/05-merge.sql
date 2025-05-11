@@ -36,6 +36,7 @@ AS (
 
     FROM AdventureWorks2022.HumanResources.Employee E
     INNER JOIN AdventureWorks2022.Person.Person P ON P.BusinessEntityID = E.BusinessEntityID
+    WHERE E.CurrentFlag = 1
 )
 SELECT
     -- Chiavi
@@ -119,7 +120,8 @@ WHEN NOT MATCHED AND SRC.IsDeleted = CAST(0 AS BIT)
 WHEN NOT MATCHED BY SOURCE
     AND TGT.IsDeleted = CAST(0 AS BIT)
   THEN UPDATE SET TGT.IsDeleted = CAST(1 AS BIT),
-    TGT.ChangeHashKey = CONVERT(VARBINARY(20), '')
+    TGT.ChangeHashKey = CONVERT(VARBINARY(20), ''),
+    TGT.UpdateDatetime = CURRENT_TIMESTAMP
 
 OUTPUT
     CURRENT_TIMESTAMP AS merge_datetime,
@@ -136,3 +138,140 @@ GO
 
 SELECT * FROM Dim.Employee;
 GO
+
+/* Update #1: Isabella Richardson gets hired as a Sales Representative */
+
+SELECT * FROM AdventureWorks2022.Person.Person WHERE BusinessEntityID = 20774;
+GO
+
+INSERT INTO AdventureWorks2022.HumanResources.Employee (
+    BusinessEntityID,
+    NationalIDNumber,
+    LoginID,
+    OrganizationNode,
+    JobTitle,
+    BirthDate,
+    MaritalStatus,
+    Gender,
+    HireDate,
+    SalariedFlag,
+    VacationHours,
+    SickLeaveHours,
+    CurrentFlag,
+    rowguid,
+    ModifiedDate
+)
+VALUES
+(
+    20774,                              -- BusinessEntityID - int
+    N'15483774',                        -- NationalIDNumber - nvarchar(15)
+    N'adventure-works\isabella0',       -- LoginID - nvarchar(256)
+    NULL,                               -- OrganizationNode - hierarchyid
+    N'Sales Representative',            -- JobTitle - nvarchar(50)
+    '1974-02-15',                       -- BirthDate - date
+    N'S',                               -- MaritalStatus - nchar(1)
+    N'F',                               -- Gender - nchar(1)
+    CONVERT(DATE, CURRENT_TIMESTAMP),   -- HireDate - date
+    DEFAULT,                            -- SalariedFlag - Flag
+    DEFAULT,                            -- VacationHours - smallint
+    DEFAULT,                            -- SickLeaveHours - smallint
+    DEFAULT,                            -- CurrentFlag - Flag
+    DEFAULT,                            -- rowguid - uniqueidentifier
+    DEFAULT                             -- ModifiedDate - datetime
+);
+GO
+
+/* Update #2: Terri Duffy (#2) & Rob Walters (#4) get married */
+
+SELECT * FROM AdventureWorks2022.HumanResources.Employee WHERE BusinessEntityID IN (2, 4);
+GO
+
+UPDATE AdventureWorks2022.HumanResources.Employee
+SET MaritalStatus = 'M'
+WHERE BusinessEntityID IN (2, 14);
+GO
+
+/* Update #3: Roberto Tamburello (#3) calls in sick for the day */
+
+SELECT * FROM AdventureWorks2022.HumanResources.Employee WHERE BusinessEntityID = 3;
+GO
+
+UPDATE AdventureWorks2022.HumanResources.Employee
+SET SickLeaveHours = SickLeaveHours + 8
+WHERE BusinessEntityID = 3;
+GO
+
+/* Update #4: Ranjit Varkey Chudukatil (#290) leaves the organization */
+
+SELECT * FROM AdventureWorks2022.HumanResources.Employee WHERE BusinessEntityID = 290;
+GO
+
+UPDATE AdventureWorks2022.HumanResources.Employee SET CurrentFlag = 0 WHERE BusinessEntityID = 290;
+GO
+
+/* Let's merge! */
+
+EXEC Dim.usp_Merge_Employee;
+GO
+
+SELECT * FROM Dim.Employee ORDER BY UpdateDatetime DESC, BusinessEntityID;
+GO
+
+/* Test
+
+BEGIN TRANSACTION 
+
+INSERT INTO AdventureWorks2022.HumanResources.Employee (
+    BusinessEntityID,
+    NationalIDNumber,
+    LoginID,
+    OrganizationNode,
+    JobTitle,
+    BirthDate,
+    MaritalStatus,
+    Gender,
+    HireDate,
+    SalariedFlag,
+    VacationHours,
+    SickLeaveHours,
+    CurrentFlag,
+    rowguid,
+    ModifiedDate
+)
+VALUES
+(
+    20774,                              -- BusinessEntityID - int
+    N'15483774',                        -- NationalIDNumber - nvarchar(15)
+    N'adventure-works\isabella0',       -- LoginID - nvarchar(256)
+    NULL,                               -- OrganizationNode - hierarchyid
+    N'Sales Representative',            -- JobTitle - nvarchar(50)
+    '1974-02-15',                       -- BirthDate - date
+    N'S',                               -- MaritalStatus - nchar(1)
+    N'F',                               -- Gender - nchar(1)
+    CONVERT(DATE, CURRENT_TIMESTAMP),   -- HireDate - date
+    DEFAULT,                            -- SalariedFlag - Flag
+    DEFAULT,                            -- VacationHours - smallint
+    DEFAULT,                            -- SickLeaveHours - smallint
+    DEFAULT,                            -- CurrentFlag - Flag
+    DEFAULT,                            -- rowguid - uniqueidentifier
+    DEFAULT                             -- ModifiedDate - datetime
+);
+
+UPDATE AdventureWorks2022.HumanResources.Employee
+SET MaritalStatus = 'M'
+WHERE BusinessEntityID IN (2, 14);
+
+UPDATE AdventureWorks2022.HumanResources.Employee
+SET SickLeaveHours = SickLeaveHours + 8
+WHERE BusinessEntityID = 3;
+
+UPDATE AdventureWorks2022.HumanResources.Employee SET CurrentFlag = 0 WHERE BusinessEntityID = 290;
+
+EXEC Dim.usp_Merge_Employee;
+
+SELECT * FROM Dim.Employee ORDER BY UpdateDatetime DESC, BusinessEntityID;
+
+ROLLBACK TRANSACTION 
+GO
+
+*/
