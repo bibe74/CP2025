@@ -275,3 +275,103 @@ ROLLBACK TRANSACTION
 GO
 
 */
+
+--> Add another field to the dimension
+
+--> Log to a table
+
+DROP TABLE IF EXISTS audit.merge_log_details;
+GO
+
+IF OBJECT_ID('audit.merge_log_details', 'U') IS NULL
+BEGIN
+
+    CREATE TABLE audit.merge_log_details (
+        merge_datetime          DATETIME CONSTRAINT DFT_audit_merge_log_details_merge_datetime DEFAULT(CURRENT_TIMESTAMP) NOT NULL,
+        merge_action            NVARCHAR(10) NOT NULL,
+        full_olap_table_name    NVARCHAR(261) NOT NULL,
+        primary_key_description NVARCHAR(1000) NOT NULL
+    );
+
+    CREATE NONCLUSTERED INDEX IX_audit_merge_log_details ON audit.merge_log_details (merge_datetime, merge_action, full_olap_table_name);
+
+END;
+GO
+
+CREATE OR ALTER VIEW audit.merge_logView
+AS
+SELECT
+    merge_datetime,
+    full_olap_table_name,
+    COALESCE ([1], 0) AS inserted_rows,
+    COALESCE ([2], 0) AS updated_rows,
+    COALESCE ([3], 0) AS deleted_rows
+
+FROM (
+    SELECT
+        MLD.merge_datetime,
+        MLD.full_olap_table_name,
+        A.merge_action_id,
+        1 AS recordCount
+
+    FROM audit.merge_log_details MLD
+    INNER JOIN (
+        SELECT
+            1 AS merge_action_id,
+            'INSERT' AS merge_action
+
+        UNION ALL SELECT 2, 'UPDATE'
+        UNION ALL SELECT 3, 'DELETE'
+    ) A ON MLD.merge_action = A.merge_action
+) AS SourceTable
+PIVOT (
+    COUNT(SourceTable.recordCount)
+    FOR merge_action_id IN (
+        [1],
+        [2],
+        [3]
+    )
+) AS PivotTable;
+GO
+
+DROP TABLE IF EXISTS audit.merge_log;
+GO
+
+IF OBJECT_ID('audit.merge_log', N'U') IS NULL
+BEGIN
+
+    CREATE TABLE audit.merge_log (
+        merge_datetime DATETIME CONSTRAINT DFT_audit_merge_log_merge_datetime DEFAULT (CURRENT_TIMESTAMP) NOT NULL,
+        full_olap_table_name NVARCHAR(261) NOT NULL,
+        inserted_rows INT CONSTRAINT DFT_audit_merge_log_inserted_rows DEFAULT (0) NOT NULL,
+        updated_rows INT CONSTRAINT DFT_audit_merge_log_updated_rows DEFAULT (0) NOT NULL,
+        deleted_rows INT CONSTRAINT DFT_audit_merge_log_deleted_rows DEFAULT (0) NOT NULL,
+
+        CONSTRAINT PK_audit_merge_log
+            PRIMARY KEY CLUSTERED (
+                merge_datetime,
+                full_olap_table_name
+            )
+    );
+
+END;
+GO
+
+CREATE OR ALTER PROCEDURE audit.usp_compact_merge_log
+AS
+BEGIN
+
+    SET NOCOUNT ON;
+
+    INSERT INTO audit.merge_log
+    SELECT * FROM audit.merge_logView
+    ORDER BY merge_datetime,
+            full_olap_table_name;
+
+    TRUNCATE TABLE audit.merge_log_details;
+
+END;
+GO
+
+EXEC audit.usp_compact_merge_log;
+GO

@@ -55,3 +55,5 @@ GO
 
 EXEC Dim.usp_Update_Employee;
 GO
+
+--> NULLable fields

@@ -94,6 +94,9 @@ GO
 IF NOT EXISTS (SELECT name FROM sys.schemas WHERE name = 'Dim') EXEC ('CREATE SCHEMA Dim AUTHORIZATION dbo;');
 GO
 
+IF NOT EXISTS (SELECT name FROM sys.schemas WHERE name = 'audit') EXEC ('CREATE SCHEMA audit AUTHORIZATION dbo;');
+GO
+
 /**
 
 Scaricare e scompattare il file .zip da https://www.gardainformatica.it/database-comuni-italiani

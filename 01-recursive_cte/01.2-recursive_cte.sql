@@ -40,9 +40,9 @@ SELECT
     E.LastName,
     E.JobTitle,
     E.ManagerBusinessEntityID,
-    M.FirstName,
-    M.LastName,
-    M.JobTitle
+    M.FirstName AS ManagerFirstName,
+    M.LastName AS ManagerLastName,
+    M.JobTitle AS ManagerJobTitle
 
 FROM AW2022.Employee E
 INNER JOIN AW2022.Employee M ON M.BusinessEntityID = E.ManagerBusinessEntityID
@@ -57,19 +57,27 @@ SELECT
     E.LastName,
     E.JobTitle,
     E.ManagerBusinessEntityID,
-    M.FirstName,
-    M.LastName,
-    M.JobTitle,
-    M.ManagerBusinessEntityID,
-    MM.FirstName,
-    MM.LastName,
-    MM.JobTitle
+    M.FirstName AS ManagerFirstName,
+    M.LastName AS ManagerLastName,
+    M.JobTitle AS ManagerJobTitle,
+    M.ManagerBusinessEntityID AS ManagerManagerBusinessEntityID,
+    MM.FirstName AS ManagerManagerFirstName,
+    MM.LastName AS ManagerManagerLastName,
+    MM.JobTitle AS ManagerManagerJobTitle
 
 FROM AW2022.Employee E
 INNER JOIN AW2022.Employee M ON M.BusinessEntityID = E.ManagerBusinessEntityID
 INNER JOIN AW2022.Employee MM ON MM.BusinessEntityID = M.ManagerBusinessEntityID
 WHERE M.ManagerBusinessEntityID = 1;
 GO
+
+--> Recursive CTE: anchor, recursive expression
+
+--> Add breadcrumbs
+
+--> Infinite loop
+
+--> Solve and check infinite loops
 
 /*
 WITH Organization

@@ -1,3 +1,12 @@
+USE CP2025;
+GO
+
+SELECT * FROM dbo.Provincia;
+GO
+
+SELECT * FROM dbo.Comune;
+GO
+
 -- Elenco province per numero comuni
 SELECT
     C.IdProvincia,
@@ -82,4 +91,14 @@ GO
                     ||----w |
                     ||     ||
 
+*/
+
+--> Update corretta
+
+/*
+UPDATE C
+SET C.DenominazioneProvincia = P.Denominazione
+FROM dbo.Comune C
+INNER JOIN dbo.Provincia P ON P.Id = C.IdProvincia;
+GO
 */
