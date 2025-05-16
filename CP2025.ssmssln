@@ -11,9 +11,9 @@ Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "04-update_in", "04-update_i
 EndProject
 Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "00-setup", "00-setup\00-setup.ssmssqlproj", "{DF0234BE-6156-45B1-A285-F6B045D6DA23}"
 EndProject
-Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "05-fun_with_unicode", "05-fun_with_unicode\05-fun_with_unicode.ssmssqlproj", "{3A8C7082-6CF7-45B4-973F-F4805DA80278}"
-EndProject
 Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "02-transactions", "02-transactions\02-transactions.ssmssqlproj", "{9455B7CA-8473-40D4-9EE2-54F40F45E564}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "05-fun_with_tsql", "05-fun_with_tsql\05-fun_with_tsql.ssmssqlproj", "{47F022F9-7493-4D03-8A81-2AF5D8A8970B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,9 +24,9 @@ Global
 		{0BAE72C3-10E9-4F50-9442-E381D0B9A74E}.Default|Default.ActiveCfg = Default
 		{E2A8BC94-D4C3-4763-A9BC-3743AA990B7D}.Default|Default.ActiveCfg = Default
 		{DF0234BE-6156-45B1-A285-F6B045D6DA23}.Default|Default.ActiveCfg = Default
-		{3A8C7082-6CF7-45B4-973F-F4805DA80278}.Default|Default.ActiveCfg = Default
 		{B7065890-A84E-43B4-9227-C380F3CA4444}.Default|Default.ActiveCfg = Default
 		{9455B7CA-8473-40D4-9EE2-54F40F45E564}.Default|Default.ActiveCfg = Default
+		{47F022F9-7493-4D03-8A81-2AF5D8A8970B}.Default|Default.ActiveCfg = Default
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

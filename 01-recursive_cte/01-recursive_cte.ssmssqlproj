@@ -4,7 +4,7 @@
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
       <Items>
         <ConnectionNode Name="RAMANUJAN:METRA\a.turelli">
-          <Created>2025-05-11T11:32:53.1933434+02:00</Created>
+          <Created>2025-05-16T08:02:32.000004+02:00</Created>
           <Type>SQL</Type>
           <Server>RAMANUJAN</Server>
           <UserName />
@@ -29,8 +29,8 @@
           <FullPath>01.1-tidy_cte.sql</FullPath>
         </FileNode>
         <FileNode Name="01.2-recursive_cte.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RAMANUJAN:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>RAMANUJAN</AssociatedConnSrvName>
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
           <AssociatedConnUserName />
           <FullPath>01.2-recursive_cte.sql</FullPath>
         </FileNode>

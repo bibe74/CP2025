@@ -4,12 +4,12 @@
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
       <Items>
         <ConnectionNode Name="RAMANUJAN:METRA\a.turelli">
-          <Created>2025-05-11T11:19:21.561751+02:00</Created>
+          <Created>2025-05-16T08:02:28.0112807+02:00</Created>
           <Type>SQL</Type>
           <Server>RAMANUJAN</Server>
           <UserName />
           <Authentication>Windows Authentication</Authentication>
-          <InitialDB />
+          <InitialDB>CP2025</InitialDB>
           <LoginTimeout>30</LoginTimeout>
           <TrustServerCertificate>True</TrustServerCertificate>
           <HostNameInServerCertificate />

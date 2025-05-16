@@ -1,0 +1,1 @@
+/* Copy and paste Query.txt content */
