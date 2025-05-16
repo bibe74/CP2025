@@ -16190,3 +16190,51 @@ BEGIN
 
 END;
 GO
+
+USE CP2025;
+GO
+
+DROP TABLE IF EXISTS dbo.Dischi;
+DROP TABLE IF EXISTS dbo.Autori;
+GO
+
+IF OBJECT_ID('dbo.Dischi', 'U') IS NULL
+BEGIN
+
+    CREATE TABLE dbo.Autori (
+        IDAutore INT NOT NULL IDENTITY (1, 1) CONSTRAINT PK_Autori PRIMARY KEY CLUSTERED,
+        Autore NVARCHAR(80) NOT NULL
+    );
+
+    INSERT INTO dbo.Autori (
+        Autore
+    )
+    VALUES (N'Elio e le storie tese');
+
+    CREATE TABLE dbo.Dischi (
+        IDDisco INT NOT NULL IDENTITY (1, 1) CONSTRAINT PK_Dischi PRIMARY KEY CLUSTERED,
+        IDAutore INT NOT NULL CONSTRAINT FK_Dischi_IDAutore FOREIGN KEY REFERENCES dbo.Autori (IDAutore),
+        Titolo NVARCHAR(80) NOT NULL,
+        Anno SMALLINT NOT NULL,
+        IsAscoltato BIT NOT NULL CONSTRAINT DFT_Dischi_IsAscoltato DEFAULT (0)
+    );
+
+    INSERT INTO dbo.Dischi (
+        IDAutore,
+        Titolo,
+        Anno,
+        IsAscoltato
+    )
+    VALUES (1, N'Elio Samaga Hukapan Kariyana Turu', 1989, DEFAULT),
+       (1, N'Italyan, Rum Casusu Çikti', 1992, DEFAULT),
+       (1, N'Esco dal mio corpo e ho molta paura (Gli inediti 1979-1986)', 1993, DEFAULT),
+       (1, N'Eat the Phikis', 1996, DEFAULT),
+       (1, N'Peerla', 1998, DEFAULT),
+       (1, N'Craccracriccrecr', 1999, DEFAULT),
+       (1, N'Cicciput', 2003, DEFAULT),
+       (1, N'Studentessi', 2008, DEFAULT),
+       (1, N'L''album biango', 2013, DEFAULT),
+       (1, N'Figgatta de Blanc', 2016, DEFAULT);
+
+END;
+GO
