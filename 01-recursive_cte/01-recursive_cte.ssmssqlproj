@@ -22,17 +22,17 @@
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
-        <FileNode Name="01.1-tidy_cte.sql">
+        <FileNode Name="01-tidy_cte.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RAMANUJAN:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>RAMANUJAN</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>01.1-tidy_cte.sql</FullPath>
+          <FullPath>01-tidy_cte.sql</FullPath>
         </FileNode>
-        <FileNode Name="01.2-recursive_cte.sql">
+        <FileNode Name="02-recursive_cte.sql">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
-          <FullPath>01.2-recursive_cte.sql</FullPath>
+          <FullPath>02-recursive_cte.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>
