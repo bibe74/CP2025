@@ -15,14 +15,20 @@ SELECT
     1 AS IsAscoltato_NEW
 
 FROM dbo.Dischi D
-INNER JOIN dbo.Autori A ON A.IDAutore = D.IDAutore
+INNER JOIN dbo.Autori A ON A.IDAutore = D.IDAutore;
+GO
+
+SELECT
+    D.IDDisco,
+    D.IDAutore,
+    D.Titolo,
+    D.Anno,
+    D.IsAscoltato,
+
+    1 AS IsAscoltato_NEW
+
+FROM dbo.Dischi D
 WHERE D.Anno < 2015;
 GO
 
-BEGIN TRANSACTION 
-
-UPDATE dbo.Dischi
-SET IsAscoltato = 1;
-
-ROLLBACK TRANSACTION 
-GO
+--> UPDATE (CTRL+C, CTRL+V*)

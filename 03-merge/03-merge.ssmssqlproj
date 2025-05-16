@@ -29,26 +29,26 @@
           <FullPath>01-select.sql</FullPath>
         </FileNode>
         <FileNode Name="02-truncate_reload.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RAMANUJAN:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RAMANUJAN</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>02-truncate_reload.sql</FullPath>
         </FileNode>
         <FileNode Name="03-insert_update_delete.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RAMANUJAN:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RAMANUJAN</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>03-insert_update_delete.sql</FullPath>
         </FileNode>
         <FileNode Name="04-insert_full-update_delete.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RAMANUJAN:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RAMANUJAN</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>04-insert_full-update_delete.sql</FullPath>
         </FileNode>
         <FileNode Name="05-merge.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RAMANUJAN:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RAMANUJAN</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>05-merge.sql</FullPath>
         </FileNode>

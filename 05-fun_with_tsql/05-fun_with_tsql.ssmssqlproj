@@ -29,8 +29,8 @@
           <FullPath>01-fun_with_reserved_words.sql</FullPath>
         </FileNode>
         <FileNode Name="02-fun_with_unicode.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RAMANUJAN:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RAMANUJAN</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>02-fun_with_unicode.sql</FullPath>
         </FileNode>
