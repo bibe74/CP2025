@@ -47,3 +47,5 @@ GO
 
 EXEC Dim.usp_Reload_Employee;
 GO
+
+SELECT * FROM Dim.Employee;

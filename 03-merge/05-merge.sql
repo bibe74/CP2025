@@ -128,7 +128,8 @@ OUTPUT
     ----$action AS merge_action,
     CASE WHEN Inserted.IsDeleted = CAST(1 AS BIT) THEN N'DELETE' ELSE $action END AS merge_action,
     'Dim.Employee' AS full_olap_table_name,
-    'BusinessEntityID = ' + CAST(COALESCE(inserted.BusinessEntityID, deleted.BusinessEntityID) AS NVARCHAR) AS primary_key_description;
+    'FirstName = ' + CAST(COALESCE(inserted.FirstName, deleted.FirstName) AS NVARCHAR)
+        + ', LastName = ' + CAST(COALESCE(inserted.LastName, deleted.LastName) AS NVARCHAR) AS primary_key_description;
 
 END;
 GO
