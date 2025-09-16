@@ -1,4 +1,4 @@
-USE CP2025;
+USE PO2025;
 GO
 
 CREATE OR ALTER PROCEDURE Dim.usp_Update_Employee

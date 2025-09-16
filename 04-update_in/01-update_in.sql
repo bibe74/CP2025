@@ -1,4 +1,4 @@
-USE CP2025;
+USE PO2025;
 GO
 
 SELECT * FROM dbo.Provincia;

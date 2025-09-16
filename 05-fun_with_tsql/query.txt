@@ -1,7 +1,9 @@
 /*
 USE master;
 GO
-DROP DATABASE [٠০౦০٠];
+DROP DATABASE IF EXISTS [٠০౦০٠];
+GO
+CREATE DATABASE [٠০౦০٠];
 GO
 */
 

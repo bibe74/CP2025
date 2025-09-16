@@ -1,20 +1,19 @@
 <?xml version="1.0"?>
-<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="05-fun_with_tsql">
+<SqlWorkbenchSqlProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="05-fun_with_tsql">
   <Items>
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
       <Items>
         <ConnectionNode Name="RAMANUJAN:METRA\a.turelli">
-          <Created>2025-05-16T08:02:44.2285035+02:00</Created>
+          <Created>2025-09-16T23:03:00.7004976+02:00</Created>
           <Type>SQL</Type>
           <Server>RAMANUJAN</Server>
           <UserName />
           <Authentication>Windows Authentication</Authentication>
-          <InitialDB>CP2025</InitialDB>
-          <LoginTimeout>30</LoginTimeout>
+          <InitialDB>PO2025</InitialDB>
+          <LoginTimeout>15</LoginTimeout>
           <TrustServerCertificate>True</TrustServerCertificate>
-          <HostNameInServerCertificate />
           <EncryptionOption>True</EncryptionOption>
-          <ExecutionTimeout>0</ExecutionTimeout>
+          <ExecutionTimeout>30</ExecutionTimeout>
           <ConnectionProtocol>NotSpecified</ConnectionProtocol>
           <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
         </ConnectionNode>
@@ -23,8 +22,8 @@
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
         <FileNode Name="01-fun_with_reserved_words.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RAMANUJAN:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>RAMANUJAN</AssociatedConnSrvName>
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
           <AssociatedConnUserName />
           <FullPath>01-fun_with_reserved_words.sql</FullPath>
         </FileNode>
